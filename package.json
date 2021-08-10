@@ -52,7 +52,7 @@
     "concurrently": "^6.2.0"
   },
   "dependencies": {
-    "knex": "^0.21.20",
+    "knex": "^0.21.21",
     "pg": "^8.7.1"
   }
 }
