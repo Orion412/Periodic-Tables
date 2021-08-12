@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import {
   listTables,
   readReservation,
   updateTable,
   updateStatus,
-} from '../utils/api';
-import ErrorAlert from '../layout/ErrorAlert';
+} from "../utils/api";
+import ErrorAlert from "../layout/ErrorAlert";
 
 function TableSeating() {
   const history = useHistory();
   const { reservation_id } = useParams();
-  const [formData, setFormData] = useState({ table_id: '' });
+  const [formData, setFormData] = useState({ table_id: "" });
   const [reservation, setReservation] = useState({});
   const [tables, setTables] = useState([]);
   const [error, setError] = useState(null);
@@ -47,16 +47,16 @@ function TableSeating() {
 
   function submitHandler(event) {
     event.preventDefault();
-    if (formData.table_id !== 'x') {
+    if (formData.table_id !== "x") {
       const abortController = new AbortController();
-      let status = 'seated';
+      let status = "seated";
       updateStatus(status, reservation_id, abortController.signal);
       updateTable(
         parseInt(formData.table_id),
         reservation.reservation_id,
         abortController.signal
       ).then(() => {
-        history.push('/dashboard');
+        history.push("/dashboard");
       });
     }
   }
@@ -64,7 +64,7 @@ function TableSeating() {
   function changeHandler({ target }) {
     setFormData({ [target.name]: target.value });
   }
-  if (reservation.status === 'booked') {
+  if (reservation.status === "booked") {
     return (
       <main className="container">
         <ErrorAlert error={error} />
@@ -92,7 +92,7 @@ function TableSeating() {
                   </label>
                   <select
                     onChange={changeHandler}
-                    className="custom-select"
+                    className="table_id"
                     id="table_id"
                     name="table_id"
                   >
